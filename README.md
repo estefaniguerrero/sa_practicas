@@ -43,4 +43,4 @@ Tres acciones principales para eliminar la deuda técnica usando Código Limpio 
 
 * **Porcentaje estimado de deuda técnica en el script original (0% al 100%):** 75%  
 * **Reflexión ágil:** Un software rígido y con alta deuda técnica frena drásticamente la velocidad de entrega en Scrum. Cada cambio "sorpresa" o nuevo requerimiento genera un efecto dominó que rompe partes del código viejo, obligando a realizar retrabajos masivos en lugar de entregar valor constante en cada Sprint.
-* Usar ramas y Pull Requests no es solo por orden técnico; es lo que nos permite avanzar juntos sin pisarnos el trabajo de los demás. Al integrar los cambios poco a poco y de forma transparente, evitamos perder horas arreglando conflictos gigantes al final del Sprint, logrando que el proyecto esté siempre listo, estable
+* Usar ramas y Pull Requests no es solo por orden técnico; es lo que nos permite avanzar juntos sin pisarnos el trabajo de los demás. Al integrar los cambios poco a poco y de forma transparente, evitamos perder horas arreglando conflictos gigantes al final del Sprint, logrando que el proyecto esté siempre listo y estable .
