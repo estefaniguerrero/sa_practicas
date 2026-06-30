@@ -1,7 +1,7 @@
 # Reporte de Deuda Técnica y Adaptabilidad del Software
 
 **Asignatura:** Sistemas Ágiles  
-**Integrantes:** Estefani Guerrero y Paola Tapia  
+**Integrantes:** Estefani Guerrero, Christian Flores y Paola Tapia  
 **Fecha:** 30 de Junio de 2026  
 
 ---
