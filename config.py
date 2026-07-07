@@ -1,3 +1,6 @@
+"""Configuraciones globales del sistema de inventario."""
+
 ARCHIVO_INVENTARIO = "datos_inv.txt"
-PORCENTAJE_IVA = 0.15
+IVA = 0.15
+CATEGORIA_DESCUENTO = "Tecnología"
 DESCUENTO_TECNOLOGIA = 0.10
