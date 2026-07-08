@@ -1,0 +1,42 @@
+[
+    {
+        "codigo_barras": "78610012",
+        "producto": "Laptop",
+        "precio": 800.0,
+        "stock": 3,
+        "categoria": "Tecnolog\u00eda",
+        "precio_final": 806.4
+    },
+    {
+        "codigo_barras": "78610055",
+        "producto": "Cuaderno",
+        "precio": 2.5,
+        "stock": 50,
+        "categoria": "\u00datiles",
+        "precio_final": 2.88
+    },
+    {
+        "codigo_barras": "78620022",
+        "producto": "Smartphone",
+        "precio": 350.0,
+        "stock": 2,
+        "categoria": "Tecnolog\u00eda",
+        "precio_final": 352.8
+    },
+    {
+        "codigo_barras": "78630033",
+        "producto": "Impresora",
+        "precio": 150.0,
+        "stock": 10,
+        "categoria": "Tecnolog\u00eda",
+        "precio_final": 151.2
+    },
+    {
+        "codigo_barras": "78640044",
+        "producto": "Escritorio",
+        "precio": 85.0,
+        "stock": 4,
+        "categoria": "Muebles",
+        "precio_final": 97.75
+    }
+]
