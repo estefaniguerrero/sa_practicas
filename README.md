@@ -1,2 +1,1 @@
-# sa_practicas
-Ejemplos prácticos de sistemas ágiles
+Aplicar principios de Código Limpio y técnicas de Refactorización para mejorar la calidad 
