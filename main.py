@@ -1,82 +1,122 @@
 import os
 
-# Archivo de texto para persistencia de datos
-A = "datos_inv.txt"
+# Constantes
+ARCHIVO_DATOS = "datos_inv.txt"
+IVA = 0.15
+DESCUENTO_TECNOLOGIA = 0.10
 
-def p_pro(op, x, p, c, t):
-    # Función gigante que hace absolutamente todo: valida, calcula, escribe y formatea
-    if op == 1:
-        # VALIDACIÓN Y REGISTRO DE PRODUCTO
-        if x == "" or p <= 0 or c < 0:
-            print("Error: Datos inválidos.")
-            return False
-        
-        # Hardcoding: IVA del 15% quemado directamente en el bucle/lógica
-        iva = p * 0.15
-        total_con_iva = p + iva
-        
-        # Lógica de descuento repetida e idéntica (Código duplicado)
-        if t == "Tecnología":
-            # 10% de descuento para tecnología
-            p_final = total_con_iva - (total_con_iva * 0.10)
-        else:
-            p_final = total_con_iva
-            
-        linea = f"{x},{p},{c},{t},{p_final}\n"
-        
-        # Escritura directa en archivo plano
-        with open(A, "a") as f:
-            f.write(linea)
-        print("Producto guardado con éxito.")
-        
-    elif op == 2:
-        # LECTURA Y DESPLIEGUE EN TABLA
-        if not os.path.exists(A):
-            print("No hay datos registrados.")
-            return
-        
-        with open(A, "r") as f:
-            lineas = f.readlines()
-            
-        print("--------------------------------------------------")
-        print("PROD | PRECIO | STOCK | CAT | PRECIO FINAL")
-        print("--------------------------------------------------")
-        for l in lineas:
-            datos1 = l.strip().split(",")
-            # Nombres crípticos de variables (datos1, x1, etc.)
-            x1 = datos1[0]
-            p1 = float(datos1[1])
-            c1 = int(datos1[2])
-            t1 = datos1[3]
-            pf1 = float(datos1[4])
-            print(f"{x1} | ${p1} | {c1} unidades | {t1} | ${pf1}")
-        print("--------------------------------------------------")
 
-    elif op == 3:
-        # SIMULACIÓN DE REPORTES (Código duplicado para recalcular el IVA otra vez)
-        if not os.path.exists(A):
-            return
-        with open(A, "r") as f:
-            lineas = f.readlines()
-        
-        sumatoria = 0
-        for l in lineas:
-            datos2 = l.strip().split(",")
-            precio_base = float(datos2[1])
-            # Repetición del cálculo del IVA del 15% (Hardcoded)
-            iva_repetido = precio_base * 0.15
-            sumatoria += iva_repetido
-        print(f"Total de IVA acumulado en inventario: ${sumatoria}")
+def calcular_precio_final(precio, categoria):
+    """Calcula el precio final incluyendo IVA y descuento si aplica."""
+    total_con_iva = precio + (precio * IVA)
 
-# Simulación de ejecución del programa
+    if categoria == "Tecnología":
+        total_con_iva -= total_con_iva * DESCUENTO_TECNOLOGIA
+
+    return total_con_iva
+
+
+def registrar_producto(nombre, precio, stock, categoria):
+    """Registra un producto en el archivo."""
+
+    if nombre == "" or precio <= 0 or stock < 0:
+        print("Error: Datos inválidos.")
+        return
+
+    precio_final = calcular_precio_final(precio, categoria)
+
+    linea = f"{nombre},{precio},{stock},{categoria},{precio_final}\n"
+
+    with open(ARCHIVO_DATOS, "a") as archivo:
+        archivo.write(linea)
+
+    print("Producto guardado con éxito.")
+
+
+def listar_productos():
+    """Muestra todos los productos registrados."""
+
+    if not os.path.exists(ARCHIVO_DATOS):
+        print("No hay datos registrados.")
+        return
+
+    print("--------------------------------------------------")
+    print("PROD | PRECIO | STOCK | CAT | PRECIO FINAL")
+    print("--------------------------------------------------")
+
+    with open(ARCHIVO_DATOS, "r") as archivo:
+
+        for linea in archivo:
+            datos = linea.strip().split(",")
+
+            nombre = datos[0]
+            precio = float(datos[1])
+            stock = int(datos[2])
+            categoria = datos[3]
+            precio_final = float(datos[4])
+
+            print(
+                f"{nombre} | ${precio} | {stock} unidades | "
+                f"{categoria} | ${precio_final}"
+            )
+
+    print("--------------------------------------------------")
+
+
+def reporte_iva():
+    """Calcula el IVA total del inventario."""
+
+    if not os.path.exists(ARCHIVO_DATOS):
+        return
+
+    total_iva = 0
+
+    with open(ARCHIVO_DATOS, "r") as archivo:
+
+        for linea in archivo:
+            datos = linea.strip().split(",")
+            precio = float(datos[1])
+            total_iva += precio * IVA
+
+    print(f"Total de IVA acumulado en inventario: ${total_iva}")
+
+
+def gestionar_inventario(opcion, nombre="", precio=0, stock=0, categoria=""):
+    """Controla las operaciones del sistema."""
+
+    if opcion == 1:
+        registrar_producto(nombre, precio, stock, categoria)
+
+    elif opcion == 2:
+        listar_productos()
+
+    elif opcion == 3:
+        reporte_iva()
+
+    else:
+        print("Opción inválida.")
+
+
 if __name__ == "__main__":
+
     print("--- SISTEMA DE INVENTARIO VIEJO V1.0 ---")
-    # Registrar un par de productos de prueba
-    p_pro(1, "Laptop", 800.0, 5, "Tecnología")
-    p_pro(1, "Cuaderno", 2.50, 50, "Útiles")
-    
-    # Listar productos
-    p_pro(2, "", 0, 0, "")
-    
-    # Ver reporte de IVA
-    p_pro(3, "", 0, 0, "")
+
+    gestionar_inventario(
+        1,
+        "Laptop",
+        800.0,
+        5,
+        "Tecnología"
+    )
+
+    gestionar_inventario(
+        1,
+        "Cuaderno",
+        2.50,
+        50,
+        "Útiles"
+    )
+
+    gestionar_inventario(2)
+
+    gestionar_inventario(3)
