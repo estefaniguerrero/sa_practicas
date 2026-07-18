@@ -44,6 +44,6 @@ Durante el desarrollo de la práctica se realizaron las siguientes mejoras:
 
 ## Autor
 
-**Gabriel Bolaños**
+**ESTEFANI GUERRERO**
 
 Asignatura: **Sistemas Ágiles**
